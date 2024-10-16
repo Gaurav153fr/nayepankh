@@ -1,5 +1,6 @@
 import mongoose, { Schema, models } from "mongoose";
 import { connectDB } from "../database";
+import { donationType } from "./donationType";
 
 connectDB().catch(err => {
   console.error("Failed to connect to the database:", err);

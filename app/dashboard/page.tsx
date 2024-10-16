@@ -40,7 +40,7 @@ useEffect(()=>{
     }
   }
   fetchDonationAmount()
-},[])
+})
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Main content */}
