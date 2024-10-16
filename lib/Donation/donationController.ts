@@ -1,6 +1,7 @@
 "use server"
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Donation from "./donationModel"
+import { donationType } from "./donationType"
 
 async function createDonation(userId:string,donorEmail:string,donorName:string,amount:number){
     try{

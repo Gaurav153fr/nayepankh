@@ -4,6 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { getDonationsByUserId } from '@/lib/Donation/donationController';
 import { useUserContext } from '@/hooks/userHook';
 import { format } from 'date-fns'; // Use a date formatting library
+import { donationType } from '@/lib/Donation/donationType';
 
 export default function Transactions() {
   const [transactions, setTransactions] = useState<donationType[] | null>(null);
