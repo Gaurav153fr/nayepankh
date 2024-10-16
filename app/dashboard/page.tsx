@@ -18,7 +18,6 @@ export default function Dashboard() {
   // This would typically come from your auth system
   const user = useUserContext();
   const [totalDonations, setTotalDonations] = useState(5000); // This would be fetched from your backend
-  const [referralCode, setReferralCode] = useState("JOHNDOE123"); // This would be fetched from your backend
   const { Canvas } = useQRCode();
   const copyDonationLink = () => {
     navigator.clipboard.writeText(
@@ -29,7 +28,7 @@ export default function Dashboard() {
 
   const shareOnWhatsApp = () => {
     const message = encodeURIComponent(
-      `Support our cause! Donate here: https://yourfundraisingportal.com/donate/${referralCode}`
+      `Support our cause! Donate here: ${process.env.NEXT_PUBLIC_URL}/donate/${user?.user?.referralCode}`
     );
     window.open(`https://wa.me/?text=${message}`, "_blank");
   };

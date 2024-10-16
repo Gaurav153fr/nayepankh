@@ -1,12 +1,34 @@
 "use client";
 import { Loader2 } from "lucide-react";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, useState } from "react";
 
+// Add this type declaration at the top of the file
+declare global {
+  interface Window {
+    paypal: {
+      Buttons: (config: PayPalButtonsConfig) => { render: (selector: string) => void };
+    };
+  }
+}
+
+interface PayPalButtonsConfig {
+  createOrder: () => Promise<string>;
+  onApprove: (data: { orderID: string }) => Promise<void>;
+}
+
+interface PayPalPaymentDetails {
+  id: string;
+  status: string;
+  payer: {
+    email_address: string;
+  };
+  // Add other relevant fields as needed
+}
+
 interface PayPalButtonProps {
   amount: number;
-  onSuccess: (details: any) => void;
+  onSuccess: (details: PayPalPaymentDetails) => void;
   name: string;
   email: string;
   referalCode: string;
@@ -45,8 +67,8 @@ const PayPalButton: React.FC<PayPalButtonProps> = ({
 
   useEffect(() => {
     if (scriptLoaded) {
-      if ((window as any).paypal) {
-        (window as any).paypal
+      if (window.paypal) {
+        window.paypal
           .Buttons({
             createOrder: async () => {
               try {
@@ -65,7 +87,7 @@ const PayPalButton: React.FC<PayPalButtonProps> = ({
                 console.error("Error creating PayPal order:", error);
               }
             },
-            onApprove: async (data: any) => {
+            onApprove: async (data: { orderID: string }) => {
               try {
                 const res = await fetch("/api/paypal/captureOrder", {
                   method: "POST",
