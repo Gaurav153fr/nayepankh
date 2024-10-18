@@ -17,7 +17,7 @@ import { getDonationAmountByUserId } from "@/lib/Donation/donationController";
 export default function Dashboard() {
   // This would typically come from your auth system
   const user = useUserContext();
-  const [totalDonations, setTotalDonations] = useState(5000); // This would be fetched from your backend
+  const [totalDonations, setTotalDonations] = useState(0); // This would be fetched from your backend
   const { Canvas } = useQRCode();
   const copyDonationLink = () => {
     navigator.clipboard.writeText(

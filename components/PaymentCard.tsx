@@ -53,7 +53,7 @@ export default function PaymentCard({referalCode}:{referalCode:string}) {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Donate to Our Foundation</CardTitle>
+        <CardTitle>Donate to Naye Pankh</CardTitle>
         <CardDescription>Your support makes a difference. Choose an amount to donate.</CardDescription>
       </CardHeader>
      

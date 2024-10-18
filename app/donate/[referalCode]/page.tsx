@@ -9,8 +9,9 @@ const Refer = async({params}:{params:{referalCode:string}}) => {
         return <div>Invalid Referral Code</div>
     }
   return (
-    <div className='flex flex-col items-center justify-center h-full'>
-<div className='font-extrabold text-5xl'>You are invited by <span>{user?.name}</span></div>
+    <div className='flex flex-col items-center justify-center h-full gap-5 mt-5'>
+<div className='font-extrabold text-xl'>You are invited by</div>
+<span className=' text-gray-700 text-5xl'>{user?.name}</span>
         <h1>Referal Code: {referCode}</h1>
         <PaymentCard referalCode={referCode} />
     </div>
